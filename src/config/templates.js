@@ -16,7 +16,7 @@ export const TEMPLATES = [
     canvasHeight: 1772,
     canvasAspectRatio: 591 / 1772, // ~0.3335 (5×15cm)
     viewfinderRatio: 492 / 368,   // ~1.337 (4:3 横向)
-    templateImage: '/public/templates/template_4slots.png',
+    templateImage: './public/templates/template_4slots.png',
     slots: [
       { index: 0, x: 50, y: 37, width: 492, height: 368, aspectRatio: 1.337 },
       { index: 1, x: 50, y: 433, width: 492, height: 368, aspectRatio: 1.337 },
@@ -37,7 +37,7 @@ export const TEMPLATES = [
     canvasHeight: 1024,
     canvasAspectRatio: 512 / 1024, // 0.500
     viewfinderRatio: 428 / 285,   // ~1.502 (3:2 横向)
-    templateImage: '/public/templates/template_3slots.png',
+    templateImage: './public/templates/template_3slots.png',
     slots: [
       { index: 0, x: 42, y: 35, width: 428, height: 285, aspectRatio: 1.502 },
       { index: 1, x: 42, y: 336, width: 428, height: 284, aspectRatio: 1.507 },
@@ -57,7 +57,7 @@ export const TEMPLATES = [
     canvasHeight: 1016,
     canvasAspectRatio: 638 / 1016, // ~0.628
     viewfinderRatio: 539 / 720,   // ~0.749 (3:4 竖向)
-    templateImage: '/public/templates/template_mini.png',
+    templateImage: './public/templates/template_mini.png',
     slots: [
       { index: 0, x: 49, y: 58, width: 539, height: 720, aspectRatio: 0.749 }
     ],
@@ -75,7 +75,7 @@ export const TEMPLATES = [
     canvasHeight: 1016,
     canvasAspectRatio: 850 / 1016, // ~0.837
     viewfinderRatio: 1.0,         // 1:1 正方形
-    templateImage: '/public/templates/template_square.png',
+    templateImage: './public/templates/template_square.png',
     slots: [
       { index: 0, x: 61, y: 49, width: 728, height: 728, aspectRatio: 1.0 }
     ],
@@ -93,7 +93,7 @@ export const TEMPLATES = [
     canvasHeight: 815,
     canvasAspectRatio: 1024 / 815, // ~1.256
     viewfinderRatio: 925 / 519,   // ~1.782 (16:9 横向)
-    templateImage: '/public/templates/template_landscape.png',
+    templateImage: './public/templates/template_landscape.png',
     slots: [
       { index: 0, x: 50, y: 39, width: 925, height: 519, aspectRatio: 1.782 }
     ],

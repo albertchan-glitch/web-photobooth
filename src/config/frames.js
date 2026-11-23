@@ -18,7 +18,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#f65eae',
       borderHex: '#fe2b88',
       description: '四格精选相框 1',
-      imageSrc: '/public/frames/4slots_1.png',
+      imageSrc: './public/frames/4slots_1.png',
       templateId: '4slots'
     },
     {
@@ -27,7 +27,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#81bed0',
       borderHex: '#7ccbcf',
       description: '四格精选相框 2',
-      imageSrc: '/public/frames/4slots_2.png',
+      imageSrc: './public/frames/4slots_2.png',
       templateId: '4slots'
     },
     {
@@ -36,7 +36,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#854db9',
       borderHex: '#b946c1',
       description: '四格精选相框 3',
-      imageSrc: '/public/frames/4slots_3.png',
+      imageSrc: './public/frames/4slots_3.png',
       templateId: '4slots'
     },
     {
@@ -45,7 +45,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#7ba9e0',
       borderHex: '#5c7ce5',
       description: '四格精选相框 4',
-      imageSrc: '/public/frames/4slots_4.png',
+      imageSrc: './public/frames/4slots_4.png',
       templateId: '4slots'
     }
   ],
@@ -56,7 +56,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#966bb3',
       borderHex: '#8d6ea5',
       description: '三格精选相框 1',
-      imageSrc: '/public/frames/3slots_1.png',
+      imageSrc: './public/frames/3slots_1.png',
       templateId: '3slots'
     },
     {
@@ -65,7 +65,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#546d99',
       borderHex: '#000b81',
       description: '三格精选相框 2',
-      imageSrc: '/public/frames/3slots_2.png',
+      imageSrc: './public/frames/3slots_2.png',
       templateId: '3slots'
     },
     {
@@ -74,7 +74,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#b09bcb',
       borderHex: '#ff82cb',
       description: '三格精选相框 3',
-      imageSrc: '/public/frames/3slots_3.png',
+      imageSrc: './public/frames/3slots_3.png',
       templateId: '3slots'
     },
     {
@@ -83,7 +83,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#508e82',
       borderHex: '#3a947f',
       description: '三格精选相框 4',
-      imageSrc: '/public/frames/3slots_4.png',
+      imageSrc: './public/frames/3slots_4.png',
       templateId: '3slots'
     }
   ],
@@ -94,7 +94,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#cba1ec',
       borderHex: '#9464d5',
       description: '横版精选相框 1',
-      imageSrc: '/public/frames/landscape_1.png',
+      imageSrc: './public/frames/landscape_1.png',
       templateId: 'landscape'
     },
     {
@@ -103,7 +103,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#b5b8d7',
       borderHex: '#87cec4',
       description: '横版精选相框 2',
-      imageSrc: '/public/frames/landscape_2.png',
+      imageSrc: './public/frames/landscape_2.png',
       templateId: 'landscape'
     },
     {
@@ -112,7 +112,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#a75a7a',
       borderHex: '#6f2e47',
       description: '横版精选相框 3',
-      imageSrc: '/public/frames/landscape_3.png',
+      imageSrc: './public/frames/landscape_3.png',
       templateId: 'landscape'
     },
     {
@@ -121,7 +121,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#b9bcbf',
       borderHex: '#898585',
       description: '横版精选相框 4',
-      imageSrc: '/public/frames/landscape_4.png',
+      imageSrc: './public/frames/landscape_4.png',
       templateId: 'landscape'
     },
     {
@@ -130,7 +130,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#9f93c5',
       borderHex: '#a4a7c6',
       description: '横版精选相框 5',
-      imageSrc: '/public/frames/landscape_5.png',
+      imageSrc: './public/frames/landscape_5.png',
       templateId: 'landscape'
     }
   ],
@@ -141,7 +141,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#be87af',
       borderHex: '#7c2342',
       description: '竖版精选相框 1',
-      imageSrc: '/public/frames/mini_1.png',
+      imageSrc: './public/frames/mini_1.png',
       templateId: 'mini'
     },
     {
@@ -150,7 +150,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#7062be',
       borderHex: '#4944ae',
       description: '竖版精选相框 2',
-      imageSrc: '/public/frames/mini_2.png',
+      imageSrc: './public/frames/mini_2.png',
       templateId: 'mini'
     },
     {
@@ -159,7 +159,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#8e5ea0',
       borderHex: '#6d509b',
       description: '竖版精选相框 3',
-      imageSrc: '/public/frames/mini_3.png',
+      imageSrc: './public/frames/mini_3.png',
       templateId: 'mini'
     },
     {
@@ -168,7 +168,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#b8b3cb',
       borderHex: '#9a8fc4',
       description: '竖版精选相框 4',
-      imageSrc: '/public/frames/mini_4.png',
+      imageSrc: './public/frames/mini_4.png',
       templateId: 'mini'
     },
     {
@@ -177,7 +177,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#88879d',
       borderHex: '#83819c',
       description: '竖版精选相框 5',
-      imageSrc: '/public/frames/mini_5.png',
+      imageSrc: './public/frames/mini_5.png',
       templateId: 'mini'
     }
   ],
@@ -188,7 +188,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#d9c7ca',
       borderHex: '#fbe0d4',
       description: '方形精选相框 1',
-      imageSrc: '/public/frames/square_1.png',
+      imageSrc: './public/frames/square_1.png',
       templateId: 'square'
     },
     {
@@ -197,7 +197,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#c982b7',
       borderHex: '#fd8cca',
       description: '方形精选相框 2',
-      imageSrc: '/public/frames/square_2.png',
+      imageSrc: './public/frames/square_2.png',
       templateId: 'square'
     },
     {
@@ -206,7 +206,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#c69fe8',
       borderHex: '#9f70f9',
       description: '方形精选相框 3',
-      imageSrc: '/public/frames/square_3.png',
+      imageSrc: './public/frames/square_3.png',
       templateId: 'square'
     },
     {
@@ -215,7 +215,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#807275',
       borderHex: '#b65a56',
       description: '方形精选相框 4',
-      imageSrc: '/public/frames/square_4.png',
+      imageSrc: './public/frames/square_4.png',
       templateId: 'square'
     },
     {
@@ -224,7 +224,7 @@ export const TEMPLATE_FRAMES = {
       colorHex: '#9c92ca',
       borderHex: '#bc85e2',
       description: '方形精选相框 5',
-      imageSrc: '/public/frames/square_5.png',
+      imageSrc: './public/frames/square_5.png',
       templateId: 'square'
     }
   ]
