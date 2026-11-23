@@ -1,0 +1,837 @@
+/**
+ * Cyber-Purikura 2000 独立视觉原型样式
+ * Y2K × Vaporwave × Japanese Purikura × Pixel Art
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap');
+
+:root {
+  /* 深邃街机紫黑底色 */
+  --bg-deep: #090514;
+  --bg-panel: #140d2a;
+  --bg-surface: #1d123b;
+  --bg-card: #25184b;
+  --border-arcade: #442a82;
+
+  /* 高饱和霓虹撞色 */
+  --neon-pink: #ff007f;        /* 荧光热粉 */
+  --neon-cyan: #00f0ff;        /* 电光青蓝 */
+  --neon-purple: #9d00ff;      /* 激光亮紫 */
+  --neon-acid: #39ff14;        /* 酸性荧光绿 */
+  --neon-yellow: #ffee00;      /* 像素亮黄 */
+  --neon-orange: #ff5500;      /* 能量亮橙 */
+
+  /* Y2K 金属与全息镭射 */
+  --chrome-surface: linear-gradient(135deg, #ffffff 0%, #cbd5e1 48%, #64748b 52%, #f1f5f9 100%);
+  --holo-rainbow: linear-gradient(90deg, #ff007f, #9d00ff, #00f0ff, #39ff14, #ffee00, #ff007f);
+  --holo-glow: radial-gradient(circle at 50% 20%, rgba(157, 0, 255, 0.35) 0%, rgba(9, 5, 20, 0) 75%);
+
+  /* 8-bit 硬边投影 */
+  --pixel-shadow-cyan: 3px 3px 0 #000, 5px 5px 0 var(--neon-cyan);
+  --pixel-shadow-pink: 3px 3px 0 #000, 5px 5px 0 var(--neon-pink);
+  --pixel-shadow-acid: 3px 3px 0 #000, 5px 5px 0 var(--neon-acid);
+  --pixel-shadow-box: 4px 4px 0 #000;
+
+  /* 字体族 */
+  --font-pixel-heading: 'Silkscreen', 'Press Start 2P', monospace;
+  --font-pixel-display: 'VT323', monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #05030b;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(157, 0, 255, 0.22) 0%, transparent 60%),
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+  color: #ffffff;
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 12px 30px;
+}
+
+/* 顶部演示模式导航条 (Demo专享，快速切换查看各页面) */
+.demo-mode-switcher {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-surface);
+  border: 2px solid var(--neon-cyan);
+  box-shadow: var(--pixel-shadow-box);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 100;
+}
+
+.demo-switcher-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-pixel-heading);
+  font-size: 11px;
+  color: var(--neon-cyan);
+}
+
+.demo-tabs-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.demo-tab-btn {
+  background: var(--bg-panel);
+  color: #fff;
+  border: 1.5px solid var(--border-arcade);
+  border-radius: 4px;
+  padding: 6px 4px;
+  font-family: var(--font-pixel-heading);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.demo-tab-btn.active {
+  background: var(--neon-pink);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: 700;
+}
+
+/* 手机机台外框 (Cyber-Purikura Arcade Cabinet) */
+.arcade-cabinet {
+  width: 100%;
+  max-width: 440px;
+  min-height: 780px;
+  background: var(--bg-deep);
+  border: 3px solid #000;
+  outline: 2px solid var(--neon-purple);
+  box-shadow: 
+    0 0 35px rgba(157, 0, 255, 0.45),
+    6px 6px 0 #000,
+    9px 9px 0 var(--neon-pink);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 机台顶部金属跑马灯外饰 */
+.cabinet-marquee-header {
+  height: 48px;
+  background: linear-gradient(180deg, #2a1b54 0%, var(--bg-panel) 100%);
+  border-bottom: 2px solid var(--neon-pink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cabinet-marquee-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--holo-rainbow);
+  animation: rainbowFlow 4s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes rainbowFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.marquee-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pixel-logo-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px var(--neon-pink));
+}
+
+.marquee-title {
+  font-family: var(--font-pixel-heading);
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow: 0 0 8px var(--neon-cyan);
+  letter-spacing: 1px;
+}
+
+.purikura-kanji {
+  font-size: 10px;
+  color: var(--neon-yellow);
+  font-weight: 800;
+  background: rgba(255, 0, 127, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--neon-pink);
+}
+
+.marquee-status-badge {
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  color: var(--neon-acid);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-dot-blink {
+  width: 6px;
+  height: 6px;
+  background: var(--neon-acid);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-acid);
+  animation: blinkDot 1s infinite steps(2, jump-none);
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* 核心屏幕舞台 (Stage Area) */
+.cabinet-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 12px 14px 16px;
+}
+
+/* 页面切换容器 */
+.view-panel {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  animation: panelIn 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.view-panel.active {
+  display: flex;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 舞台标题栏 */
+.stage-header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--neon-pink);
+  padding-left: 8px;
+}
+
+.stage-badge {
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  background: var(--neon-purple);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+}
+
+.stage-title {
+  font-family: var(--font-pixel-heading);
+  font-size: 15px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stage-sub {
+  font-size: 11px;
+  color: var(--text-muted-purple);
+}
+
+/* ============================================================
+   Stage 1: 模板选择 (Purikura Template Carousel)
+   ============================================================ */
+.cyber-carousel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  padding: 10px 4px 20px;
+  scrollbar-width: none;
+}
+
+.cyber-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.cyber-card {
+  flex-shrink: 0;
+  width: 200px;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-arcade);
+  border-radius: 8px;
+  padding: 12px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+  box-shadow: var(--pixel-shadow-box);
+}
+
+.cyber-card.active {
+  border-color: var(--neon-cyan);
+  background: linear-gradient(180deg, #23164d 0%, var(--bg-surface) 100%);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), var(--pixel-shadow-cyan);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.card-sticker-tag {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--neon-pink);
+  color: #fff;
+  font-family: var(--font-pixel-heading);
+  font-size: 9px;
+  padding: 2px 6px;
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  border-radius: 3px;
+  transform: rotate(6deg);
+}
+
+.cyber-card-screen {
+  width: 100%;
+  background: #ffffff;
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.schematic-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: space-around;
+}
+
+.schematic-slot-item {
+  flex: 1;
+  background: #eef2ff;
+  border: 1.5px dashed #4338ca;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  font-weight: 700;
+  color: #4338ca;
+}
+
+.card-label-box {
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-main-title {
+  font-family: var(--font-pixel-heading);
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.cyber-card.active .card-main-title {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.card-sub-spec {
+  font-family: var(--font-pixel-display);
+  font-size: 16px;
+  color: var(--neon-yellow);
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   Stage 3: 摄像头拍摄界面 (Viewfinder & Purikura Cam)
+   摄像头居中突出，不被多余装饰挤压
+   ============================================================ */
+.camera-hud-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 取景框外层基座 */
+.viewfinder-outer-bezel {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 4px 0;
+}
+
+.viewfinder-box {
+  width: 100%;
+  max-width: 370px;
+  max-height: 52vh;
+  position: relative;
+  background: #000000;
+  border: 3px solid var(--neon-cyan);
+  box-shadow: 
+    0 0 25px rgba(0, 240, 255, 0.35),
+    var(--pixel-shadow-box);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewfinder-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 细腻的微扫描线 (不影响清晰度) */
+.scanline-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 5;
+}
+
+/* 街机准星与Purikura拍摄贴纸 */
+.hud-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--neon-cyan);
+  border-style: solid;
+  z-index: 6;
+  filter: drop-shadow(0 0 4px var(--neon-cyan));
+}
+
+.hud-corner.tl { top: 10px; left: 10px; border-width: 3px 0 0 3px; }
+.hud-corner.tr { top: 10px; right: 10px; border-width: 3px 3px 0 0; }
+.hud-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 3px 3px; }
+.hud-corner.br { bottom: 10px; right: 10px; border-width: 0 3px 3px 0; }
+
+/* 摄像机 HUD 指示标 */
+.hud-rec-tag {
+  position: absolute;
+  top: 10px;
+  left: 36px;
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  color: var(--neon-pink);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--neon-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-pink);
+  animation: blinkDot 1s infinite;
+}
+
+.hud-shot-badge {
+  position: absolute;
+  top: 10px;
+  right: 36px;
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--neon-yellow);
+  padding: 2px 6px;
+  border: 1px solid var(--neon-yellow);
+  border-radius: 3px;
+  z-index: 6;
+}
+
+/* 大头贴趣味落書き角标 (Purikura Doodles) */
+.purikura-sparkle-stamp {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 14px;
+  z-index: 6;
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-pink);
+  animation: floatHeart 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-4px) scale(1.1); }
+}
+
+/* 3秒倒计时大数字 */
+.countdown-modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 8, 23, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+.countdown-modal.hidden {
+  display: none;
+}
+
+.countdown-giant-number {
+  font-family: var(--font-pixel-heading);
+  font-size: 110px;
+  color: var(--neon-yellow);
+  text-shadow: 
+    4px 4px 0 #000,
+    0 0 25px var(--neon-yellow),
+    0 0 50px var(--neon-pink);
+  line-height: 1;
+  animation: pixelPulse 0.9s steps(4, jump-end) infinite;
+}
+
+@keyframes pixelPulse {
+  0% { transform: scale(0.7); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ============================================================
+   Stage 4: 成品预览画板 (Purikura Strip Printout)
+   ============================================================ */
+.preview-board-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6px 0;
+}
+
+.purikura-print-strip {
+  max-height: 48vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 
+    0 0 0 3px #000,
+    0 0 0 5px var(--neon-pink),
+    var(--pixel-shadow-cyan),
+    0 15px 35px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.purikura-print-strip:hover {
+  transform: scale(1.02);
+}
+
+.purikura-canvas-demo {
+  max-height: 44vh;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 贴纸胶囊提示 */
+.click-retake-pill {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-panel);
+  border: 1.5px solid var(--neon-yellow);
+  color: var(--neon-yellow);
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* ============================================================
+   Stage 5: 底部控制台与副控制面板 (Purikura Console Drawer)
+   ============================================================ */
+.purikura-console-drawer {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-arcade);
+  border-radius: 8px;
+  box-shadow: var(--pixel-shadow-box);
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.console-tab-bar {
+  display: flex;
+  border-bottom: 2px solid var(--border-arcade);
+  background: var(--bg-panel);
+}
+
+.console-tab-item {
+  flex: 1;
+  padding: 8px 4px;
+  font-family: var(--font-pixel-heading);
+  font-size: 11px;
+  color: var(--text-muted-purple);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.console-tab-item.active {
+  color: var(--neon-cyan);
+  background: var(--bg-surface);
+  border-bottom: 2px solid var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan);
+}
+
+.console-options-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.console-chip-btn {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-arcade);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.console-chip-btn.active {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.5), 2px 2px 0 #000;
+}
+
+.chip-color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid #000;
+}
+
+.chip-title {
+  font-family: var(--font-pixel-heading);
+  font-size: 10px;
+  color: #fff;
+}
+
+/* ============================================================
+   实体按键控制栏 (Arcade Tactile Controls Bar)
+   ============================================================ */
+.arcade-controls-bar {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-arcade);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--pixel-shadow-box);
+}
+
+/* 8-bit 经典像素实体按钮 */
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-family: var(--font-pixel-heading);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 4px;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  box-shadow: 2px 2px 0 #000;
+  text-decoration: none;
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.pixel-btn-cancel {
+  background: var(--neon-orange);
+  color: #ffffff;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.pixel-btn-confirm {
+  background: var(--neon-pink);
+  color: #ffffff;
+  box-shadow: var(--pixel-shadow-pink);
+}
+
+/* 3D 街机快门大按钮 (Shutter Dome Button) */
+.arcade-shutter-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.arcade-shutter-btn {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: var(--chrome-surface);
+  border: 3px solid #000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 0 18px var(--neon-pink);
+  padding: 6px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.arcade-shutter-btn:active {
+  transform: scale(0.92) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 8px var(--neon-pink);
+}
+
+.shutter-inner-dome {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff4da6 0%, var(--neon-pink) 60%, #99004d 100%);
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  text-shadow: 0 1px 3px #000;
+}
+
+/* 拍照完成后的 🔴 重拍 与 🟢 确认大按键 */
+.post-shoot-feedback-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.btn-arcade-feedback {
+  flex: 1;
+  padding: 12px 14px;
+  font-family: var(--font-pixel-heading);
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 2px solid #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.1s ease;
+}
+
+.btn-arcade-feedback:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.btn-arcade-retake {
+  background: #ff2255;
+  color: #fff;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.btn-arcade-confirm {
+  background: var(--neon-acid);
+  color: #000;
+  box-shadow: 3px 3px 0 #000, 5px 5px 0 var(--neon-acid);
+}

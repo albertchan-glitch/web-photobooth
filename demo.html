@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#090514">
+  <title>Cyber-Purikura 2000 | 视觉原型 Demo</title>
+
+  <!-- 独立原型样式 -->
+  <link rel="stylesheet" href="styles/cyber-purikura-demo.css">
+</head>
+<body>
+
+  <!-- 顶部演示控制条：供您快速切换检验各个界面的设计效果 -->
+  <header class="demo-mode-switcher">
+    <div class="demo-switcher-label">
+      <span>★ CYBER-PURIKURA 2000 PROTOYPE</span>
+      <span style="color:var(--neon-pink);">UI DEMO</span>
+    </div>
+    <div class="demo-tabs-row">
+      <button class="demo-tab-btn active" data-stage="1">1. 模板</button>
+      <button class="demo-tab-btn" data-stage="2">2. 相框</button>
+      <button class="demo-tab-btn" data-stage="3">3. 拍摄</button>
+      <button class="demo-tab-btn" data-stage="4">4. 预览</button>
+    </div>
+  </header>
+
+  <!-- 主机台外框 (Arcade Machine Shell) -->
+  <main class="arcade-cabinet">
+    <!-- 顶部全息霓虹跑马灯 -->
+    <div class="cabinet-marquee-header">
+      <div class="marquee-brand">
+        <span class="pixel-logo-icon">👾</span>
+        <span class="marquee-title">PURIKURA 2000</span>
+        <span class="purikura-kanji">プリクラ</span>
+      </div>
+      <div class="marquee-status-badge">
+        <span class="status-dot-blink"></span>
+        <span>1P READY</span>
+      </div>
+    </div>
+
+    <!-- 舞台核心交互区 -->
+    <div class="cabinet-stage">
+
+      <!-- ==========================================
+           Stage 1: 拍摄模板选择 (Template Selection)
+           ========================================== -->
+      <section class="view-panel active" id="panel-template">
+        <div class="stage-header-box">
+          <div>
+            <span class="stage-badge">STAGE 01</span>
+            <h2 class="stage-title">SELECT TEMPLATE ✦</h2>
+          </div>
+          <span class="stage-sub">左右滑动挑选画幅</span>
+        </div>
+
+        <div class="cyber-carousel" id="template-carousel-demo">
+          <!-- 模板 1: 四格 (Active) -->
+          <div class="cyber-card active" data-template="4slots">
+            <span class="card-sticker-tag">★ POPULAR</span>
+            <div class="cyber-card-screen" style="aspect-ratio: 0.333; max-height: 240px;">
+              <div class="schematic-box">
+                <div class="schematic-slot-item">P-01</div>
+                <div class="schematic-slot-item">P-02</div>
+                <div class="schematic-slot-item">P-03</div>
+                <div class="schematic-slot-item">P-04</div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">经典四格</span>
+              <span class="card-sub-spec">5 × 15 CM • 4 SHOTS</span>
+            </div>
+          </div>
+
+          <!-- 模板 2: 三格 -->
+          <div class="cyber-card" data-template="3slots">
+            <span class="card-sticker-tag" style="background:var(--neon-purple);">NEW</span>
+            <div class="cyber-card-screen" style="aspect-ratio: 0.5; max-height: 240px;">
+              <div class="schematic-box">
+                <div class="schematic-slot-item">P-01</div>
+                <div class="schematic-slot-item">P-02</div>
+                <div class="schematic-slot-item">P-03</div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">宽幅三格</span>
+              <span class="card-sub-spec">7.5 × 15 CM • 3 SHOTS</span>
+            </div>
+          </div>
+
+          <!-- 模板 3: 方形单格 -->
+          <div class="cyber-card" data-template="square">
+            <div class="cyber-card-screen" style="aspect-ratio: 0.837; max-height: 240px;">
+              <div class="schematic-box">
+                <div class="schematic-slot-item" style="aspect-ratio:1;">P-01 (1:1)</div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">拍立得方形</span>
+              <span class="card-sub-spec">7.2 × 8.6 CM • 1 SHOT</span>
+            </div>
+          </div>
+
+          <!-- 模板 4: 横版单格 -->
+          <div class="cyber-card" data-template="landscape">
+            <div class="cyber-card-screen" style="aspect-ratio: 1.256; max-height: 240px;">
+              <div class="schematic-box">
+                <div class="schematic-slot-item">WIDE (16:9)</div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">横版单格</span>
+              <span class="card-sub-spec">10.8 × 8.6 CM • 1 SHOT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arcade-controls-bar">
+          <button class="pixel-btn pixel-btn-cancel" id="btn-template-reset">◀ RESET</button>
+          <div style="font-family:var(--font-pixel-heading); font-size:11px; color:var(--neon-yellow);">
+            INSERT 1 COIN
+          </div>
+          <button class="pixel-btn pixel-btn-confirm" id="btn-template-next">OK NEXT ▶</button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Stage 2: 相框选择 (Purikura Frame Selection)
+           ========================================== -->
+      <section class="view-panel" id="panel-frame">
+        <div class="stage-header-box">
+          <div>
+            <span class="stage-badge" style="background:var(--neon-cyan); color:#000;">STAGE 02</span>
+            <h2 class="stage-title">CHOOSE FRAME 💖</h2>
+          </div>
+          <span class="stage-sub">当前模板: 经典四格 (5×15cm)</span>
+        </div>
+
+        <div class="cyber-carousel" id="frame-carousel-demo">
+          <!-- 相框 1: 镭射霓虹 -->
+          <div class="cyber-card active" data-frame="cyber_neon">
+            <span class="card-sticker-tag">HOT!</span>
+            <div class="cyber-card-screen" style="aspect-ratio: 0.333; max-height: 240px; background:#12082b; border: 2px solid var(--neon-cyan);">
+              <div class="schematic-box" style="padding:4px;">
+                <div style="flex:1; border: 1.5px solid var(--neon-pink); background:rgba(0,240,255,0.1); border-radius:2px;"></div>
+                <div style="flex:1; border: 1.5px solid var(--neon-pink); background:rgba(0,240,255,0.1); border-radius:2px;"></div>
+                <div style="flex:1; border: 1.5px solid var(--neon-pink); background:rgba(0,240,255,0.1); border-radius:2px;"></div>
+                <div style="flex:1; border: 1.5px solid var(--neon-pink); background:rgba(0,240,255,0.1); border-radius:2px;"></div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">CYBER NEON</span>
+              <span class="card-sub-spec" style="color:var(--neon-cyan);">电光镭射框</span>
+            </div>
+          </div>
+
+          <!-- 相框 2: 甜心大头贴 -->
+          <div class="cyber-card" data-frame="purikura_sweet">
+            <span class="card-sticker-tag" style="background:var(--neon-yellow); color:#000;">KAWAII</span>
+            <div class="cyber-card-screen" style="aspect-ratio: 0.333; max-height: 240px; background:#ffeeee; border: 2px solid var(--neon-pink);">
+              <div class="schematic-box" style="padding:4px;">
+                <div style="flex:1; border: 1px dashed var(--neon-pink); background:#fff; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px dashed var(--neon-pink); background:#fff; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px dashed var(--neon-pink); background:#fff; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px dashed var(--neon-pink); background:#fff; border-radius:2px;"></div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">SWEET CLUB</span>
+              <span class="card-sub-spec" style="color:var(--neon-pink);">甜心拍贴框</span>
+            </div>
+          </div>
+
+          <!-- 相框 3: 经典原版白 -->
+          <div class="cyber-card" data-frame="classic_white">
+            <div class="cyber-card-screen" style="aspect-ratio: 0.333; max-height: 240px; background:#ffffff; border: 2px solid #000;">
+              <div class="schematic-box" style="padding:4px;">
+                <div style="flex:1; border: 1px solid #000; background:#f1f5f9; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px solid #000; background:#f1f5f9; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px solid #000; background:#f1f5f9; border-radius:2px;"></div>
+                <div style="flex:1; border: 1px solid #000; background:#f1f5f9; border-radius:2px;"></div>
+              </div>
+            </div>
+            <div class="card-label-box">
+              <span class="card-main-title">PURE WHITE</span>
+              <span class="card-sub-spec">原版极简白</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arcade-controls-bar">
+          <button class="pixel-btn pixel-btn-cancel" id="btn-frame-back">◀ BACK</button>
+          <div style="font-family:var(--font-pixel-heading); font-size:11px; color:var(--neon-cyan);">
+            FRAME SELECTED
+          </div>
+          <button class="pixel-btn pixel-btn-confirm" id="btn-frame-next">OK SHOOT ▶</button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Stage 3: 拍摄界面 (Camera Viewfinder & Dome Shutter)
+           取景框居中且足够突出，避免过多装饰挤压
+           ========================================== -->
+      <section class="view-panel" id="panel-camera">
+        <div class="stage-header-box">
+          <div>
+            <span class="stage-badge" style="background:var(--neon-pink); color:#fff;">STAGE 03</span>
+            <h2 class="stage-title">CAM-01 READY 📸</h2>
+          </div>
+          <button class="pixel-btn" id="btn-toggle-live-cam" style="padding:4px 8px; font-size:10px; background:var(--bg-panel); border-color:var(--neon-cyan); color:var(--neon-cyan);">
+            📷 开启实时摄像头
+          </button>
+        </div>
+
+        <!-- 摄像头核心取景框 (4:3 比例，清晰宽敞无挤压) -->
+        <div class="viewfinder-outer-bezel">
+          <div class="viewfinder-box" style="aspect-ratio: 1.338;">
+            <!-- 摄像头画面 / 示例肖像 -->
+            <video id="demo-cam-video" class="viewfinder-video" autoplay playsinline muted></video>
+            
+            <!-- 模拟肖像底图 (若未开摄像头时默认呈现逼真人物预览) -->
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+                 alt="Portrait Preview" 
+                 id="demo-portrait-fallback" 
+                 class="viewfinder-video" 
+                 style="position:absolute; inset:0; object-fit:cover; z-index:1;"/>
+
+            <!-- 细腻扫描线微纹理 (微弱透明度，保持画面清晰) -->
+            <div class="scanline-layer"></div>
+
+            <!-- 四角青蓝像素准星 -->
+            <span class="hud-corner tl"></span>
+            <span class="hud-corner tr"></span>
+            <span class="hud-corner bl"></span>
+            <span class="hud-corner br"></span>
+
+            <!-- 顶部 HUD 标签 -->
+            <div class="hud-rec-tag">
+              <span class="rec-dot"></span>
+              <span>REC [00:03]</span>
+            </div>
+            <div class="hud-shot-badge">SHOT 01/04</div>
+
+            <!-- Purikura 趣味涂鸦贴纸角标 -->
+            <div class="purikura-sparkle-stamp">✨ KAWAII! ♡</div>
+
+            <!-- 3 秒点阵倒计时浮层 -->
+            <div class="countdown-modal hidden" id="countdown-modal">
+              <div class="countdown-giant-number" id="countdown-number">3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部快门控制区 (支持常态快门 与 拍照后红绿确认双态切换) -->
+        <div class="arcade-controls-bar">
+          <!-- 状态 A: 点击快门 -->
+          <div id="controls-shutter" style="width:100%; display:flex; align-items:center; justify-content:space-between;">
+            <button class="pixel-btn pixel-btn-cancel" id="btn-camera-back" style="font-size:11px;">◀ EXIT</button>
+            <div class="arcade-shutter-wrap">
+              <button class="arcade-shutter-btn" id="btn-arcade-shutter" title="点击开始3秒倒计时拍摄">
+                <div class="shutter-inner-dome">📸</div>
+              </button>
+            </div>
+            <button class="pixel-btn" style="background:var(--bg-card); color:var(--neon-cyan); border-color:var(--neon-cyan); font-size:11px;">
+              🪞 镜像
+            </button>
+          </div>
+
+          <!-- 状态 B: 拍摄后的 🔴 重拍 与 🟢 确认大按键 -->
+          <div id="controls-feedback" class="post-shoot-feedback-bar" style="display:none;">
+            <button class="btn-arcade-feedback btn-arcade-retake" id="btn-arcade-retake">
+              <span>🔴</span>
+              <span>重拍 (RETAKE)</span>
+            </button>
+            <button class="btn-arcade-feedback btn-arcade-confirm" id="btn-arcade-confirm">
+              <span>🟢</span>
+              <span>确认 (CONFIRM)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Stage 4: 成品预览画板 (Purikura Printout)
+           ========================================== -->
+      <section class="view-panel" id="panel-preview">
+        <div class="stage-header-box">
+          <div>
+            <span class="stage-badge" style="background:var(--neon-acid); color:#000;">FINAL</span>
+            <h2 class="stage-title">PHOTO PRINT ★</h2>
+          </div>
+          <button class="pixel-btn" id="btn-demo-download" style="background:var(--neon-pink); color:#fff; border-color:#fff; font-size:11px;">
+            💾 确认下载
+          </button>
+        </div>
+
+        <!-- 照片条画板展示 -->
+        <div class="preview-board-wrap">
+          <div class="purikura-print-strip" id="demo-print-strip" title="点击照片可重拍该张">
+            <canvas id="purikura-preview-canvas" class="purikura-canvas-demo" width="341" height="1024" style="aspect-ratio: 0.333;"></canvas>
+          </div>
+
+          <div class="click-retake-pill">
+            <span>👆</span>
+            <span>点击画面中任意单张，可单独重新拍摄</span>
+          </div>
+        </div>
+
+        <!-- 步骤五：底部控制台与选项抽屉 -->
+        <div class="purikura-console-drawer">
+          <div class="console-tab-bar">
+            <button class="console-tab-item active" data-tab="frame">
+              <span>🖼️</span> <span>相框 FRAME</span>
+            </button>
+            <button class="console-tab-item" data-tab="filter">
+              <span>🎨</span> <span>滤镜 FILTER</span>
+            </button>
+            <button class="console-tab-item" data-tab="sticker">
+              <span>✨</span> <span>贴纸 (筹备)</span>
+            </button>
+          </div>
+
+          <!-- 横向滑动选项栏 -->
+          <div class="console-options-row">
+            <button class="console-chip-btn active">
+              <span class="chip-color-dot" style="background:var(--neon-cyan); border-color:#fff;"></span>
+              <span class="chip-title">CYBER</span>
+            </button>
+            <button class="console-chip-btn">
+              <span class="chip-color-dot" style="background:var(--neon-pink);"></span>
+              <span class="chip-title">SWEET</span>
+            </button>
+            <button class="console-chip-btn">
+              <span class="chip-color-dot" style="background:#fff;"></span>
+              <span class="chip-title">WHITE</span>
+            </button>
+            <button class="console-chip-btn">
+              <span class="chip-color-dot" style="background:var(--neon-purple);"></span>
+              <span class="chip-title">VIOLET</span>
+            </button>
+            <button class="console-chip-btn">
+              <span class="chip-color-dot" style="background:var(--neon-acid);"></span>
+              <span class="chip-title">LIME</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 模拟点击单张照片的 RPG 像素重拍确认弹窗 -->
+  <div id="demo-retake-modal" style="
+    position: fixed; inset: 0; background: rgba(9, 5, 20, 0.75); 
+    display: none; align-items: center; justify-content: center; z-index: 999; backdrop-filter: blur(4px);
+  ">
+    <div style="
+      width: 300px; background: var(--bg-surface); border: 2px solid var(--neon-cyan);
+      box-shadow: var(--pixel-shadow-cyan); border-radius: 8px; padding: 20px; text-align: center;
+    ">
+      <div style="font-size: 28px; margin-bottom: 8px;">📸</div>
+      <h3 style="font-family: var(--font-pixel-heading); font-size: 14px; color: #fff; margin-bottom: 6px;">
+        重新拍摄第 2 张？
+      </h3>
+      <p style="font-size: 11px; color: var(--text-muted-purple); line-height: 1.5; margin-bottom: 16px;">
+        其他照片完整保留，仅替换第 2 张照片。
+      </p>
+      <div style="display: flex; gap: 10px;">
+        <button class="pixel-btn pixel-btn-cancel" id="btn-retake-cancel" style="flex: 1;">NO 取消</button>
+        <button class="pixel-btn pixel-btn-confirm" id="btn-retake-ok" style="flex: 1;">YES 重拍</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 原型交互脚本 -->
+  <script src="src/demo.js"></script>
+
+  <!-- 预绘制示例照片条到 Canvas -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('purikura-preview-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = 341, h = 1024;
+      
+      // 底色
+      ctx.fillStyle = '#0e0822';
+      ctx.fillRect(0, 0, w, h);
+
+      // 4 个格子的示例绘制
+      const slots = [
+        { y: 28 }, { y: 257 }, { y: 485 }, { y: 708 }
+      ];
+
+      const colors = [
+        ['#ff007f', '#7b00ff'],
+        ['#00f0ff', '#0044ff'],
+        ['#ffee00', '#ff007f'],
+        ['#39ff14', '#00f0ff']
+      ];
+
+      slots.forEach((s, i) => {
+        const grad = ctx.createLinearGradient(28, s.y, 28 + 285, s.y + 213);
+        grad.addColorStop(0, colors[i][0]);
+        grad.addColorStop(1, colors[i][1]);
+        ctx.fillStyle = grad;
+        ctx.fillRect(28, s.y, 285, 213);
+
+        ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        ctx.fillRect(28, s.y, 285, 213);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`★ SHOT 0${i + 1} ★`, 28 + 285 / 2, s.y + 213 / 2 - 10);
+
+        ctx.font = '14px sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.fillText('PURIKURA 2000', 28 + 285 / 2, s.y + 213 / 2 + 18);
+
+        // 边框
+        ctx.strokeStyle = '#00f0ff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(28, s.y, 285, 213);
+      });
+
+      // 底部留白日戳
+      ctx.fillStyle = '#ffee00';
+      ctx.font = 'bold 13px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('★ PURIKURA CLUB • 2026.11.17 ★', w / 2, h - 35);
+      ctx.fillStyle = '#ff007f';
+      ctx.fillText('✦ 盛れる! KAWAII PHOTOBOOTH ✦', w / 2, h - 18);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+/**
+ * 拍摄页面专用样式：取景框比例自适应、倒计时动画、闪光反馈与操作按钮
+ */
+
+.step-camera {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #060709;
+}
+
+/* 顶部状态与工具栏 */
+.camera-top-bar {
+  flex-shrink: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: rgba(13, 15, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 20;
+}
+
+.top-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-main);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.top-tool-btn:active {
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(0.95);
+}
+
+.shoot-progress-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+}
+
+.mini-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.m-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.m-dot.active {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.m-dot.done {
+  background: var(--color-primary);
+}
+
+.top-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 取景框自适应舞台 */
+.viewfinder-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.viewfinder-container {
+  width: 100%;
+  max-width: 380px;
+  max-height: 58vh;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 0 1.5px rgba(255, 255, 255, 0.15);
+  transition: filter 0.3s ease;
+}
+
+/* 倒计时画面变暗反馈 */
+.viewfinder-container.darken {
+  filter: brightness(0.6);
+}
+
+/* 实时摄像头视频 */
+.camera-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.camera-video-el.mirrored {
+  transform: scaleX(-1);
+}
+
+/* 取景框边角线 */
+.viewfinder-grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(255, 255, 255, 0.7);
+  border-style: solid;
+}
+
+.corner.top-left {
+  top: 8px;
+  left: 8px;
+  border-width: 2.5px 0 0 2.5px;
+}
+
+.corner.top-right {
+  top: 8px;
+  right: 8px;
+  border-width: 2.5px 2.5px 0 0;
+}
+
+.corner.bottom-left {
+  bottom: 8px;
+  left: 8px;
+  border-width: 0 0 2.5px 2.5px;
+}
+
+.corner.bottom-right {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 2.5px 2.5px 0;
+}
+
+/* 3秒倒计时大数字遮罩 */
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  transition: opacity 0.2s ease;
+}
+
+.countdown-overlay.hidden {
+  display: none;
+}
+
+.countdown-number {
+  font-size: 110px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.8);
+  line-height: 1;
+  animation: countdownPulse 0.9s cubic-bezier(0.1, 0.9, 0.2, 1) infinite;
+}
+
+@keyframes countdownPulse {
+  0% { transform: scale(0.6); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+/* 闪光白屏反馈 */
+.flash-overlay {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity 0.05s ease-in;
+}
+
+.flash-overlay.flash-active {
+  opacity: 0.9;
+}
+
+/* 拍摄单张预览浮层 */
+.snapshot-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  display: none;
+  z-index: 12;
+}
+
+.snapshot-preview-overlay.visible {
+  display: block;
+}
+
+.snapshot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 摄像头异常卡片 */
+.camera-error-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 15, 20, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 18;
+}
+
+.camera-error-layer.hidden {
+  display: none;
+}
+
+.error-card {
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 24px 20px;
+  border-radius: 20px;
+  max-width: 280px;
+}
+
+.error-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.error-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.error-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-retry, .btn-upload-label {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-retry {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-upload-label {
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+}
+
+/* 底部操作区 */
+.camera-controls-bar {
+  flex-shrink: 0;
+  height: 110px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 20;
+}
+
+/* 快门控制按钮行 */
+.controls-row-shutter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.side-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.side-btn .icon {
+  font-size: 22px;
+}
+
+.side-btn .label {
+  font-size: 11px;
+}
+
+/* 快门大按钮 */
+.shutter-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: transparent;
+  border: 4px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.shutter-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: transform 0.15s ease;
+}
+
+.shutter-btn:active .shutter-inner {
+  transform: scale(0.88);
+  background: #e2e8f0;
+}
+
+/* 拍摄后红绿确认/重拍按钮行 (线框图红绿双按钮) */
+.controls-row-feedback {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.feedback-tip {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  flex: 1;
+}
+
+.feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 26px;
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 105px;
+  transition: all 0.2s ease;
+}
+
+.feedback-btn:active {
+  transform: scale(0.95);
+}
+
+/* 🔴 红色重拍当前 */
+.btn-retake-shot {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+  border: 2px solid var(--color-danger);
+}
+
+.btn-retake-shot:hover {
+  background: var(--color-danger);
+  color: #fff;
+  box-shadow: var(--shadow-glow-red);
+}
+
+/* 🟢 绿色确认当前 */
+.btn-confirm-shot {
+  background: var(--color-primary);
+  color: #ffffff;
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-glow-green);
+}
+
+.btn-confirm-shot:hover {
+  background: var(--color-primary-hover);
+}

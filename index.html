@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#ff84a9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Albert's Photobooth</title>
+
+  <!-- Google Pixel 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- 样式模块 -->
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="photobooth-app" id="app">
+    <!-- 街机外壳容器 (移动端最大化自适应) -->
+    <div class="arcade-cabinet-wrapper" id="cabinet-wrapper">
+      <!-- 机身本体高保真底图 -->
+      <img src="public/assets/cabinet.jpg" alt="Albert's Photobooth" class="cabinet-frame-img" />
+
+      <!-- CRT 屏幕定位与扫描线视窗 (精准映射在机身正中内嵌显示器区域) -->
+      <div class="crt-screen-viewport" id="crt-viewport">
+        <div class="crt-screen-content" id="crt-content">
+          <!-- 步骤 1~4 视图内容挂载于此 -->
+        </div>
+      </div>
+
+      <!-- 物理按键点击热区 (覆盖于机身按键之上) -->
+      <div class="arcade-controls-container">
+        <button class="arcade-btn-hitbox btn-red-arcade" id="btn-arcade-red" title="返回 / 取消 / 重拍" aria-label="返回/重拍"></button>
+        <button class="arcade-btn-hitbox btn-yellow-left" id="btn-arcade-prev" title="向左切换" aria-label="向左"></button>
+        <button class="arcade-btn-hitbox btn-yellow-right" id="btn-arcade-next" title="向右切换" aria-label="向右"></button>
+        <button class="arcade-btn-hitbox btn-green-arcade" id="btn-arcade-green" title="确认 / 下一步 / 拍摄" aria-label="确认/拍摄"></button>
+      </div>
+
+      <!-- 步骤(5) 出纸动效槽 (出纸口槽位于机身底部黑色长条位置) -->
+      <div class="spit-dispenser-slot" id="spit-slot">
+        <img src="" alt="Spitting Strip" class="spitting-photo-strip" id="spitting-strip" />
+      </div>
+    </div>
+
+    <!-- 步骤(5) 最终落地页 (居中高清相框 + 贴近双胶囊按钮) -->
+    <div class="result-landing-overlay" id="result-landing">
+      <div class="result-photo-card" id="result-photo-card">
+        <img src="" alt="Final Photo" id="result-final-img" />
+      </div>
+      <div class="result-action-bar">
+        <button class="btn-capsule btn-capsule-restart" id="btn-landing-restart">🔄 RESTART</button>
+        <button class="btn-capsule btn-capsule-download" id="btn-landing-download">💾 DOWNLOAD</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主程序入口脚本 (原生 ES Module) -->
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
