@@ -586,6 +586,14 @@ html, body {
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
 }
 
+.step-frame-4slots .crt-frame-preview-box {
+  min-height: 0;
+}
+
+.step-frame-4slots .crt-frame-img {
+  max-height: 94%;
+}
+
 .crt-frame-card.active .crt-frame-img {
   filter: drop-shadow(0 0 8px #ff00aa) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
 }

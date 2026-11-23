@@ -19,7 +19,7 @@ export class FrameSelector {
     const selectedFrameId = stateStore.get('selectedFrameId') || frames[0].id;
 
     this.container.innerHTML = `
-      <div class="crt-step-view step-frame">
+      <div class="crt-step-view step-frame step-frame-${tmpl.id}">
         <h2 class="crt-step-title">Choose Frame:</h2>
 
         <div class="crt-carousel-container" id="frame-carousel">
