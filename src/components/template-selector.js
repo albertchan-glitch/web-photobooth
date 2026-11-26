@@ -19,7 +19,7 @@ export class TemplateSelector {
 
     this.container.innerHTML = `
       <div class="crt-step-view step-template">
-        <h2 class="crt-step-title">Choose One Template:</h2>
+        <h2 class="crt-step-title">Select a Template:</h2>
 
         <div class="crt-carousel-container" id="template-carousel">
           <div class="crt-carousel-track">

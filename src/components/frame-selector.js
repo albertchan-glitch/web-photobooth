@@ -20,7 +20,7 @@ export class FrameSelector {
 
     this.container.innerHTML = `
       <div class="crt-step-view step-frame step-frame-${tmpl.id}">
-        <h2 class="crt-step-title">Choose Frame:</h2>
+        <h2 class="crt-step-title">Select a Frame:</h2>
 
         <div class="crt-carousel-container" id="frame-carousel">
           <div class="crt-carousel-track">
