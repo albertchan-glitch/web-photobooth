@@ -9,6 +9,7 @@ import { TemplateSelector } from './components/template-selector.js';
 import { FrameSelector } from './components/frame-selector.js';
 import { CameraView } from './components/camera-view.js';
 import { PreviewView } from './components/preview-view.js';
+import { initializeCabinetScreen } from './modules/cabinet-screen.js';
 
 export class App {
   constructor() {
@@ -26,7 +27,14 @@ export class App {
     this.currentFinalDataUrl = null;
   }
 
-  init() {
+  async init() {
+    await initializeCabinetScreen({
+      image: document.querySelector('.cabinet-frame-img'),
+      wrapper: this.cabinetWrapper,
+      screen: document.getElementById('crt-viewport'),
+      app: document.getElementById('app'),
+    });
+
     this.bindArcadeControls();
     this.bindLandingEvents();
 
@@ -180,7 +188,7 @@ export class App {
 
 export let appInstance = null;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   appInstance = new App();
-  appInstance.init();
+  await appInstance.init();
 });

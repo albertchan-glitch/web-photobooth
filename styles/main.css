@@ -81,8 +81,6 @@ html, body {
    -------------------------------------------------------------------------- */
 .arcade-cabinet-wrapper {
   position: relative;
-  /* Match the transparent cabinet image dimensions */
-  aspect-ratio: 768 / 1376;
   height: 96dvh;
   max-height: 920px;
   max-width: 96vw;
@@ -91,6 +89,7 @@ html, body {
   align-items: center;
   transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
   z-index: 10;
+  visibility: hidden;
 }
 
 /* 机身本体高保真底图 */
@@ -115,17 +114,17 @@ html, body {
    -------------------------------------------------------------------------- */
 .crt-screen-viewport {
   position: absolute;
-  top: 23.62%;
-  left: 13.93%;
-  width: 72.92%;
-  height: 47.67%;
-  border-radius: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(180deg, #78c4ea 0%, #6da9ca 60%, #7dbfdf 100%);
   overflow: hidden;
   z-index: 12;
   box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  visibility: hidden;
 }
 
 /* 复古 CRT 电视扫描线与微光扫掠效果 */
